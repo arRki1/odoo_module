@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="act_purchase_overview" model="ir.actions.act_window">
+        <field name="name">Purchase Overview</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.stage</field>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="purchase_overview_kanban"/>
+    </record>
+
+    <menuitem 
+        name="Overview" id="menu_purchase_overview" 
+        parent="purchase.menu_purchase_root" 
+        action="act_purchase_overview"
+        sequence="0"/>
+
+</odoo>

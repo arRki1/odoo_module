@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="view_purchase_order_filter_expand" model="ir.ui.view">
+        <field name="name">request.quotation.select.expand.stage.status</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="Wait RFQ" name="filter_wait_rfq" domain="[('state', '=', 'draft')]"/>
+                <filter string="Wait Confirm" name="filter_wait_confirm" domain="[('state', '=', 'sent')]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_view_search_expand" model="ir.ui.view">
+        <field name="name">purchase.order.select.expand.stage.status</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="Wait Warehousing" name="filter_wait_wh" 
+                    domain="[('is_shipped', '=', False), ('state', 'in', ['purchase', 'done']), ('picking_count', '>', 0), 
+                    ('invoice_status', '=' ,'no')]"/>
+                <filter string="Wait Pay" name="filter_wait_pay" 
+                    domain="[('state', 'in', ['purchase', 'done']), ('invoice_status', 'not in', ['no', 'invoiced'])]"/>
+                <!-- <filter string="Receive Delay" name="filter_receive_delay" domain=""/> -->
+            </xpath>
+        </field>
+    </record>
+
+    <record id="get_wait_rfq_purchase_order" model="ir.actions.act_window">
+        <field name="name">Wait RFQ PO</field>
+        <field name="res_model">purchase.order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="view_id" ref="purchase.purchase_order_tree"/>
+        <field name="domain"></field>
+        <field name="context">{'search_default_filter_wait_rfq': 1}</field>
+        <field name="search_view_id" ref="view_purchase_order_filter_expand"/>
+    </record>
+
+    <record id="get_wait_confirm_purchase_order" model="ir.actions.act_window">
+        <field name="name">Wait Confirm PO</field>
+        <field name="res_model">purchase.order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="view_id" ref="purchase.purchase_order_tree"/>
+        <field name="domain"></field>
+        <field name="context">{'search_default_filter_wait_confirm': 1}</field>
+        <field name="search_view_id" ref="view_purchase_order_filter_expand"/>
+    </record>
+
+    <record id="get_wait_wh_purchase_order" model="ir.actions.act_window">
+        <field name="name">Wait Warehousing PO</field>
+        <field name="res_model">purchase.order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="view_id" ref="purchase.purchase_order_view_tree"/>
+        <field name="domain"></field>
+        <field name="context">{'search_default_filter_wait_wh': 1}</field>
+        <field name="search_view_id" ref="purchase_order_view_search_expand"/>
+    </record>
+
+    <record id="get_wait_pay_purchase_order" model="ir.actions.act_window">
+        <field name="name">Wait Pay PO</field>
+        <field name="res_model">purchase.order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="view_id" ref="purchase.purchase_order_view_tree"/>
+        <field name="domain"></field>
+        <field name="context">{'search_default_filter_wait_pay': 1}</field>
+        <field name="search_view_id" ref="purchase_order_view_search_expand"/>
+    </record>
+
+    <record id="purchase_overview_kanban" model="ir.ui.view">
+        <field name="name">purchase.overview.kanban</field>
+        <field name="model">purchase.stage</field>
+        <field name="arch" type="xml">
+            <kanban class="oe_background_grey o_kanban_dashboard o_emphasize_colors o_purchase_overview_kanban" create="0">
+                <field name="name"/>
+                <field name="color"/>
+                <field name="code" readonly="1"/>
+                <field name="cnt_wait_rfq"/>
+                <field name="cnt_wait_confirm"/>
+                <field name="cnt_wait_wh"/>
+                <field name="cnt_wait_pay"/>
+                <field name="company_id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="#{kanban_color(record.color.raw_value)}" name="purchase_stage">
+                            <div>
+                                <div t-attf-class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title">
+                                        <div class="o_primary">
+                                            <t t-if="record.code.raw_value =='wait_rfq'">
+                                                <a type="action" name="%(get_wait_rfq_purchase_order)d">
+                                                    <field name="name"/>
+                                                </a>
+                                            </t>
+                                            <t t-if="record.code.raw_value =='wait_confirm'">
+                                                <a type="action" name="%(get_wait_confirm_purchase_order)d">
+                                                    <field name="name"/>
+                                                </a>
+                                            </t>
+                                            <t t-if="record.code.raw_value =='wait_wh'">
+                                                <a type="action" name="%(get_wait_wh_purchase_order)d">
+                                                    <field name="name"/>
+                                                </a>
+                                            </t>
+                                            <t t-if="record.code.raw_value =='wait_pay'">
+                                                <a type="action" name="%(get_wait_pay_purchase_order)d">
+                                                    <field name="name"/>
+                                                </a>
+                                            </t>
+                                        </div>
+                                        <div class="o_secondary">
+                                            <field class="o_secondary" name="company_id" readonly="1"/>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_manage_button_section">
+                                        <a class="o_kanban_manage_toggle_button" href="#">
+                                            <i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--  -->
+                                <div class="container o_kanban_card_content">
+                                    <div class="row">
+                                        <div class="col-6 o_kanban_primary_left">
+                                            <t t-if="record.code.raw_value =='wait_rfq'">
+                                                <button class="btn btn-primary" name="%(get_wait_rfq_purchase_order)d" type="action">
+                                                    <t t-esc="record.cnt_wait_rfq.value"/> To Process
+                                                </button>
+                                            </t>
+                                            <t t-if="record.code.raw_value =='wait_confirm'">
+                                                <button class="btn btn-primary" name="%(get_wait_confirm_purchase_order)d" type="action">
+                                                    <t t-esc="record.cnt_wait_confirm.value"/> To Process
+                                                </button>
+                                            </t>
+                                            <t t-if="record.code.raw_value =='wait_wh'">
+                                                <button class="btn btn-primary" name="%(get_wait_wh_purchase_order)d" type="action">
+                                                    <t t-esc="record.cnt_wait_wh.value"/> To Process
+                                                </button>
+                                            </t>
+                                            <t t-if="record.code.raw_value =='wait_pay'">
+                                                <button class="btn btn-primary" name="%(get_wait_pay_purchase_order)d" type="action">
+                                                    <t t-esc="record.cnt_wait_pay.value"/> To Process
+                                                </button>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--  -->
+                                <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
+                                    <div t-if="widget.editable" class="o_kanban_card_manage_settings">
+                                        <div class="col-8" role="menuitem" aria-haspopup="true">
+                                            <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+</odoo>
