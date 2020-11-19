@@ -2,10 +2,10 @@
 
 <odoo>
 
-    <data>
+    <data noupdate="1">
         <record id="purchase_stage_wait_rfq" model="purchase.stage">
             <field name="sequence">10</field>
-            <field name="name">New RFQ</field>
+            <field name="name">RFQ</field>
             <field name="code">wait_rfq</field>
         </record>
 

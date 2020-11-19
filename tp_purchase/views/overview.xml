@@ -32,6 +32,16 @@
         </field>
     </record>
 
+    <record id="act_purchase_order_form" model="ir.actions.act_window">
+        <field name="name">New RFQ</field>
+        <field name="res_model">purchase.order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="view_id" ref="purchase.purchase_order_form"/>
+        <field name="domain"></field>
+        <field name="context"></field>
+    </record>
+
     <record id="get_wait_rfq_purchase_order" model="ir.actions.act_window">
         <field name="name">Wait RFQ PO</field>
         <field name="res_model">purchase.order</field>
@@ -146,6 +156,9 @@
                                                 <button class="btn btn-primary" name="%(get_wait_rfq_purchase_order)d" type="action">
                                                     <t t-esc="record.cnt_wait_rfq.value"/> To Process
                                                 </button>
+                                                <button class="btn btn-primary" style="margin-top: 5px;" name="%(act_purchase_order_form)d" type="action">
+                                                    Create New RFQ
+                                                </button>
                                             </t>
                                             <t t-if="record.code.raw_value =='wait_confirm'">
                                                 <button class="btn btn-primary" name="%(get_wait_confirm_purchase_order)d" type="action">
@@ -164,7 +177,7 @@
                                             </t>
                                         </div>
                                         <div class="col-6 o_kanban_primary_right">
-                                            <t t-if="record.code.raw_value =='wait_wh'">
+                                            <t t-if="record.code.raw_value == 'wait_wh'">
                                                 <div t-if="record.cnt_receive_delay.raw_value &gt; 0" class="row">
                                                     <div class="col-9">
                                                         <a class="oe_kanban_purchase_stage_list" name="%(get_delay_purchase_order)d" type="action">
