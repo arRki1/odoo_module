@@ -1,8 +1,10 @@
 # -*- coding: UTF-8 -*-
 
 from odoo import models, fields, api
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 import logging
 import time
+from datetime import timedelta, datetime
 
 _logger = logging.getLogger(__name__)
 
@@ -22,7 +24,6 @@ class PurchaseStage(models.Model):
     cnt_wait_wh = fields.Integer(compute='_compute_wait_count')
     cnt_wait_pay = fields.Integer(compute='_compute_wait_count')
     cnt_receive_delay = fields.Integer(compute='_compute_wait_count')
-    cnt_receive_remind = fields.Integer(compute='_compute_wait_count')
     company_id = fields.Many2one('res.company', 'Company', required=True, index=True, default=lambda self: self.env.company.id)
 
     def _compute_wait_count(self):
@@ -33,11 +34,6 @@ class PurchaseStage(models.Model):
             ('picking_count', '>', 0), ('invoice_status', '=' ,'no')])
         self.cnt_wait_pay = PO.search_count([('state', 'in', ['purchase', 'done']), 
             ('invoice_status', 'not in', ['no', 'invoiced'])])
-        self.cnt_receive_delay = PO.search_count([('date_planned ', '<', time.strftime(DEFAULT_SERVER_DATETIME_FORMAT))), 
+        self.cnt_receive_delay = PO.search_count([('date_planned', '<', time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)), 
             ('is_shipped', '=', False), ('state', 'in', ['purchase', 'done']), 
             ('picking_count', '>', 0), ('invoice_status', '=' ,'no')])
-
-    def _compute_remind_count(self):
-        PO = self.env['purchase.order']
-        
-        # self.cnt_receive_remind = PO.search_count([('', '', '')])
