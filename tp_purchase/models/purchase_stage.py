@@ -37,3 +37,4 @@ class PurchaseStage(models.Model):
         self.cnt_receive_delay = PO.search_count([('date_planned', '<', time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)), 
             ('is_shipped', '=', False), ('state', 'in', ['purchase', 'done']), 
             ('picking_count', '!=', 0)])
+            
