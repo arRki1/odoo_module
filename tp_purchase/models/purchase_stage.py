@@ -31,9 +31,9 @@ class PurchaseStage(models.Model):
         self.cnt_wait_rfq = PO.search_count([('state', '=', 'draft')])
         self.cnt_wait_confirm = PO.search_count([('state', '=', 'sent')])
         self.cnt_wait_wh = PO.search_count([('is_shipped', '=', False), ('state', 'in', ['purchase', 'done']), 
-            ('picking_count', '>', 0), ('invoice_status', '=' ,'no')])
+            ('picking_count', '!=', 0)])
         self.cnt_wait_pay = PO.search_count([('state', 'in', ['purchase', 'done']), 
             ('invoice_status', 'not in', ['no', 'invoiced'])])
         self.cnt_receive_delay = PO.search_count([('date_planned', '<', time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)), 
             ('is_shipped', '=', False), ('state', 'in', ['purchase', 'done']), 
-            ('picking_count', '>', 0), ('invoice_status', '=' ,'no')])
+            ('picking_count', '!=', 0)])

@@ -21,13 +21,12 @@
         <field name="arch" type="xml">
             <xpath expr="//search" position="inside">
                 <filter string="Wait Warehousing" name="filter_wait_wh" 
-                    domain="[('is_shipped', '=', False), ('state', 'in', ['purchase', 'done']), ('picking_count', '>', 0), 
-                    ('invoice_status', '=' ,'no')]"/>
+                    domain="[('is_shipped', '=', False), ('state', 'in', ['purchase', 'done']), ('picking_count', '!=', 0)]"/>
                 <filter string="Wait Pay" name="filter_wait_pay" 
                     domain="[('state', 'in', ['purchase', 'done']), ('invoice_status', 'not in', ['no', 'invoiced'])]"/>
                 <filter string="Receive Delay" name="filter_receive_delay" domain="[('date_planned', '&lt;', time.strftime('%%Y-%%m-%%d %%H:%%M:%%S')), 
                     ('is_shipped', '=', False), ('state', 'in', ['purchase', 'done']), 
-                    ('picking_count', '>', 0), ('invoice_status', '=' ,'no')]"/>
+                    ('picking_count', '!=', 0)]"/>
             </xpath>
         </field>
     </record>
