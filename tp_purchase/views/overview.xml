@@ -27,6 +27,8 @@
                 <filter string="Receive Delay" name="filter_receive_delay" domain="[('date_planned', '&lt;', time.strftime('%%Y-%%m-%%d %%H:%%M:%%S')), 
                     ('is_shipped', '=', False), ('state', 'in', ['purchase', 'done']), 
                     ('picking_count', '!=', 0)]"/>
+                <filter string="Refund" name="filter_refund" domain="[('state', 'in', ['purchase', 'done']), 
+                    ('has_refund_reconcilation', '=', True)]"/>
             </xpath>
         </field>
     </record>
@@ -85,6 +87,17 @@
         <field name="search_view_id" ref="purchase_order_view_search_expand"/>
     </record>
 
+    <record id="get_refund_purchase_order" model="ir.actions.act_window">
+        <field name="name">Refund</field>
+        <field name="res_model">purchase.order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="view_id" ref="purchase.purchase_order_view_tree"/>
+        <field name="domain"></field>
+        <field name="context">{'search_default_filter_refund': 1}</field>
+        <field name="search_view_id" ref="purchase_order_view_search_expand"/>
+    </record>
+
     <record id="get_delay_purchase_order" model="ir.actions.act_window">
         <field name="name">Receive Delay PO</field>
         <field name="res_model">purchase.order</field>
@@ -109,6 +122,7 @@
                 <field name="cnt_wait_wh"/>
                 <field name="cnt_wait_pay"/>
                 <field name="cnt_receive_delay"/>
+                <field name="cnt_has_refund_reconcilation"/>
                 <field name="company_id"/>
                 <templates>
                     <t t-name="kanban-box">
@@ -134,6 +148,11 @@
                                             </t>
                                             <t t-if="record.code.raw_value =='wait_pay'">
                                                 <a type="action" name="%(get_wait_pay_purchase_order)d">
+                                                    <field name="name"/>
+                                                </a>
+                                            </t>
+                                            <t t-if="record.code.raw_value =='refund'">
+                                                <a type="action" name="%(get_refund_purchase_order)d">
                                                     <field name="name"/>
                                                 </a>
                                             </t>
@@ -172,6 +191,11 @@
                                             <t t-if="record.code.raw_value =='wait_pay'">
                                                 <button class="btn btn-primary" name="%(get_wait_pay_purchase_order)d" type="action">
                                                     <t t-esc="record.cnt_wait_pay.value"/> To Process
+                                                </button>
+                                            </t>
+                                            <t t-if="record.code.raw_value =='refund'">
+                                                <button class="btn btn-primary" name="%(get_refund_purchase_order)d" type="action">
+                                                    <t t-esc="record.cnt_has_refund_reconcilation.value"/> To Process
                                                 </button>
                                             </t>
                                         </div>

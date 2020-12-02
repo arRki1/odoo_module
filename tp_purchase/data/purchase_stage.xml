@@ -2,7 +2,7 @@
 
 <odoo>
 
-    <data noupdate="1">
+    <data noupdate="0">
         <record id="purchase_stage_wait_rfq" model="purchase.stage">
             <field name="sequence">10</field>
             <field name="name">RFQ</field>
@@ -25,6 +25,12 @@
             <field name="sequence">40</field>
             <field name="name">Wait Pay</field>
             <field name="code">wait_pay</field>
+        </record>
+
+        <record id="purchase_stage_refund" model="purchase.stage">
+            <field name="sequence">50</field>
+            <field name="name">Refund</field>
+            <field name="code">refund</field>
         </record>
     </data>
 
