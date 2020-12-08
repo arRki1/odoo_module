@@ -7,30 +7,35 @@
             <field name="sequence">10</field>
             <field name="name">RFQ</field>
             <field name="code">wait_rfq</field>
+            <field name="color">1</field>
         </record>
 
         <record id="purchase_stage_wait_confirm" model="purchase.stage">
             <field name="sequence">20</field>
             <field name="name">Wait Confirm</field>
             <field name="code">wait_confirm</field>
+            <field name="color">2</field>
         </record>
 
         <record id="purchase_stage_wait_warehousing" model="purchase.stage">
             <field name="sequence">30</field>
             <field name="name">Wait Warehousing</field>
             <field name="code">wait_wh</field>
+            <field name="color">3</field>
         </record>
 
         <record id="purchase_stage_wait_pay" model="purchase.stage">
             <field name="sequence">40</field>
             <field name="name">Wait Pay</field>
             <field name="code">wait_pay</field>
+            <field name="color">4</field>
         </record>
 
         <record id="purchase_stage_refund" model="purchase.stage">
             <field name="sequence">50</field>
             <field name="name">Refund</field>
             <field name="code">refund</field>
+            <field name="color">5</field>
         </record>
     </data>
 

@@ -1,0 +1,246 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tp_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0-20201026\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-08 07:18+0000\n"
+"PO-Revision-Date: 2020-12-08 15:31+0800\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.4.2\n"
+"Last-Translator: \n"
+"Language: zh_CN\n"
+
+#. module: tp_purchase
+#: model_terms:ir.ui.view,arch_db:tp_purchase.purchase_overview_kanban
+msgid ""
+"<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title="
+"\"Manage\"/>"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__cnt_has_refund_reconcilation
+msgid "Cnt Has Refund Reconcilation"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__cnt_receive_delay
+msgid "Cnt Receive Delay"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__cnt_wait_confirm
+msgid "Cnt Wait Confirm"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__cnt_wait_pay
+msgid "Cnt Wait Pay"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__cnt_wait_rfq
+msgid "Cnt Wait Rfq"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__cnt_wait_wh
+msgid "Cnt Wait Wh"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__color
+msgid "Color"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__company_id
+msgid "Company"
+msgstr ""
+
+#. module: tp_purchase
+#: model_terms:ir.ui.view,arch_db:tp_purchase.purchase_overview_kanban
+msgid "Create New RFQ"
+msgstr "创建新RFQ"
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_order__has_refund_reconcilation
+msgid "Has Refund Reconcilation"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__id
+msgid "ID"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_order__is_shipped
+msgid "Is Shipped"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: tp_purchase
+#: model_terms:ir.ui.view,arch_db:tp_purchase.purchase_overview_kanban
+msgid "Late"
+msgstr "迟到"
+
+#. module: tp_purchase
+#: model:ir.actions.act_window,name:tp_purchase.act_purchase_order_form
+msgid "New RFQ"
+msgstr "新RFQ"
+
+#. module: tp_purchase
+#: model:ir.ui.menu,name:tp_purchase.menu_purchase_overview
+msgid "Overview"
+msgstr "概览"
+
+#. module: tp_purchase
+#: model:ir.model,name:tp_purchase.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model,name:tp_purchase.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.actions.act_window,name:tp_purchase.act_purchase_overview
+msgid "Purchase Overview"
+msgstr "采购概览"
+
+#. module: tp_purchase
+#: model:ir.model,name:tp_purchase.model_purchase_stage
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__name
+msgid "Purchase Stage"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_order_line__qty_over_billed
+msgid "Qty Over Billed"
+msgstr ""
+
+#. module: tp_purchase
+#: model:purchase.stage,name:tp_purchase.purchase_stage_wait_rfq
+msgid "RFQ"
+msgstr ""
+
+#. module: tp_purchase
+#: model_terms:ir.ui.view,arch_db:tp_purchase.purchase_order_view_search_expand
+msgid "Receive Delay"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.actions.act_window,name:tp_purchase.get_delay_purchase_order
+msgid "Receive Delay PO"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.actions.act_window,name:tp_purchase.get_refund_purchase_order
+#: model:ir.model.fields.selection,name:tp_purchase.selection__purchase_stage__code__refund
+#: model_terms:ir.ui.view,arch_db:tp_purchase.purchase_order_view_search_expand
+#: model:purchase.stage,name:tp_purchase.purchase_stage_refund
+msgid "Refund"
+msgstr "退款"
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: tp_purchase
+#: model_terms:ir.ui.view,arch_db:tp_purchase.purchase_overview_kanban
+msgid "To Process"
+msgstr "待处理"
+
+#. module: tp_purchase
+#: model:ir.model.fields,help:tp_purchase.field_purchase_stage__sequence
+msgid "Used to order the 'All Opesrations' kanban view"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields.selection,name:tp_purchase.selection__purchase_stage__code__wait_confirm
+#: model_terms:ir.ui.view,arch_db:tp_purchase.view_purchase_order_filter_expand
+#: model:purchase.stage,name:tp_purchase.purchase_stage_wait_confirm
+msgid "Wait Confirm"
+msgstr "待确认"
+
+#. module: tp_purchase
+#: model:ir.actions.act_window,name:tp_purchase.get_wait_confirm_purchase_order
+msgid "Wait Confirm PO"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields.selection,name:tp_purchase.selection__purchase_stage__code__wait_pay
+#: model_terms:ir.ui.view,arch_db:tp_purchase.purchase_order_view_search_expand
+#: model:purchase.stage,name:tp_purchase.purchase_stage_wait_pay
+msgid "Wait Pay"
+msgstr "待付款"
+
+#. module: tp_purchase
+#: model:ir.actions.act_window,name:tp_purchase.get_wait_pay_purchase_order
+msgid "Wait Pay PO"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields.selection,name:tp_purchase.selection__purchase_stage__code__wait_rfq
+#: model_terms:ir.ui.view,arch_db:tp_purchase.view_purchase_order_filter_expand
+msgid "Wait RFQ"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.actions.act_window,name:tp_purchase.get_wait_rfq_purchase_order
+msgid "Wait RFQ PO"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields.selection,name:tp_purchase.selection__purchase_stage__code__wait_wh
+#: model_terms:ir.ui.view,arch_db:tp_purchase.purchase_order_view_search_expand
+#: model:purchase.stage,name:tp_purchase.purchase_stage_wait_warehousing
+msgid "Wait Warehousing"
+msgstr "待入库"
+
+#. module: tp_purchase
+#: model:ir.actions.act_window,name:tp_purchase.get_wait_wh_purchase_order
+msgid "Wait Warehousing PO"
+msgstr ""
+
+#. module: tp_purchase
+#: model:ir.model.fields,field_description:tp_purchase.field_purchase_stage__code
+msgid "code"
+msgstr ""

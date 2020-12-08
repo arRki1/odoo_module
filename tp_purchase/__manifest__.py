@@ -4,7 +4,7 @@
     'name': 'TP Purchase',
     'description': 'TP Purchase',
     'author': 'arRki1',
-    'depends': ['base', 'purchase'],
+    'depends': ['base', 'purchase', 'stock', 'account'],
     'application': True,
     'data': [
         'security/ir.model.access.csv',
